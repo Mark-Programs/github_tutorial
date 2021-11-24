@@ -20,10 +20,11 @@ COMMIT		=		git commit -m "<message>"	(put in a message that states what was comm
 					- note, this can be a simple "added this <filename> file" or "updated <this>" etc
 					- this means the data is ready to be pushed to Github
 
-SET ORIGIN	=		git remote add origin https://github.com/<githubname>/<reponame>
+SET ORIGIN	=		git remote add origin git@github.com:<gitHubUsername>/<reponame>
 						- ie: https://github.com/ihechikara/git-and-github-tutorial.git
 
 BRANCH RENAME =		git branch -M main  (renames from MASTER to MAIN)
+						NOTE----The "git status" must return a clean value before you can change from master to main!
 
 PUSH TO GITHUB =	git push -u origin main	
 					- pushes the "main" branch to the "origin" (in this case the remote origin we set) 
