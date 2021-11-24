@@ -1,0 +1,65 @@
+Github commands
+
+VERSION = 			git --version
+CONFIG	=			git config --global -l (lists all in the global file)
+					git config --global user.name "<your username>"
+					git config --global user.email "<your email>"
+
+NOTE: Must always be in the proper folder in GITBASH to access that repo, push/pull data
+
+INITIALIZE 	= 		git init
+	- this begins file tracking, each repo needs its own link to a repo in github
+
+STATUS		=		git status			(shows status of files in that "repo")
+
+ADD			=		git add <filename>	(adds a single file)
+					git add * 			(adds all files)
+					git add .			(adds the files in the current folder)
+
+COMMIT		=		git commit -m "<message>"	(put in a message that states what was commited)
+					- note, this can be a simple "added this <filename> file" or "updated <this>" etc
+					- this means the data is ready to be pushed to Github
+
+SET ORIGIN	=		git remote add origin https://github.com/<githubname>/<reponame>
+						- ie: https://github.com/ihechikara/git-and-github-tutorial.git
+
+BRANCH RENAME =		git branch -M main  (renames from MASTER to MAIN)
+
+PUSH TO GITHUB =	git push -u origin main	
+					- pushes the "main" branch to the "origin" (in this case the remote origin we set) 
+				OR
+					git push <remote> --all (pushes all local branches to specified remote)
+					
+					git push <remote> --tags (the --all option doesn't push all tags, 
+						do this command to push them all to the remote repo)
+
+
+Branch: 	allows the editing of a file (or several files) without messing up the original copy.
+			- OPTIONS: Merge the changes to the original copy, or keep an independent branch.
+
+
+NEW BRANCH = 		git checkout -b <NameOfNewBranch>
+					- Checkout tells git to switch to a new branch
+					- -b tells git to create a new branch
+					- then ends with the desired name of the branch
+	
+CHECK ALL BRANCHES IN REPO:		git branch
+								- asterisk shown next to active branch
+	
+SWITCH TO MAIN (master) 
+AFTER WORKING IN BRANCH:	git checkout main
+
+MERGE CHANGES IN BRANCH 
+	TO MAIN BRANCH:			git merge <branchName>
+	
+PUSH BRANCH TO GITHUB:		git checkout test
+							git push -u origin <branchName>
+
+
+PULLING A RESPOSITORY --------
+							In Gitbash, you will have to be in a different (non active) directory
+							In GitHub, go to the repository, there is a button that "CODE"
+							- click the button, select HTTPS, then copy the line
+							GitBash:
+								git clone <paste URL here>
+								- this will PULL the repository from the remote onto the local computer
