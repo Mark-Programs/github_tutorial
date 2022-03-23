@@ -64,3 +64,25 @@ PULLING A RESPOSITORY --------
 							GitBash:
 								git clone <paste URL here>
 								- this will PULL the repository from the remote onto the local computer
+
+Issues with repo updated, but local not:
+1a. Save to stash (preserve local changes)
+	a. git stash --include-untracked
+1b. Discard local changes
+	a. git reset --hard   	(only if you know you don't need them)
+	b. git clean -fd		(If also have new/untracked files, clean is req'd to remove them)
+2. THEN git pull
+
+GIT PULL commands:
+- git pull <remote> <branch>	(normal pull)
+- git remote -v 				(see the remotes)
+add main repo as a remote:
+	git remote add <remote-name> <url>
+
+FETCH files w/o merging:
+	git fetch (only downloads, doesn't integrate new data into working files)
+
+
+Typical Cycle, pulling remote to local:
+1. git checkout <master branch name> (switch to master)
+2. git pull origin (fetch and merge)
