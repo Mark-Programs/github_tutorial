@@ -1,9 +1,12 @@
 Github commands
 
-VERSION = 		git --version
-CONFIG	=		git config --global -l (lists all in the global file)
-				git config --global user.name "<your username>"
-				git config --global user.email "<your email>"
+VERSION = 		
+	$ git --version
+
+CONFIG	=		
+	$ git config --global -l (lists all in the global file)
+	$ git config --global user.name "<your username>"
+	$ git config --global user.email "<your email>"
 
 NOTE: Must always be in the proper folder in GITBASH to access that repo, push/pull data
 
@@ -98,3 +101,106 @@ FETCH files w/o merging:
 Typical Cycle, pulling remote to local:
 1. git checkout <master branch name> (switch to master)
 2. git pull origin (fetch and merge)
+
+---------------------------------------------------------------------------
+Misc Commands ================================
+git log			// show commit history
+git log --pretty=oneline	// one-line display of commits
+git log --pretty=oneline --max-count=2
+git log --pretty=oneline --since='5 minutes ago'
+git log --pretty=oneline --until='5 minutes ago'
+git log --pretty=oneline --author=<your name>
+git log --pretty=oneline --all
+git log --all --pretty=format:'%h %cd %s (%an)' --since='7 days ago'
+	--author=jim	// searches author as well
+
+--pretty=”…”  -Defines format of the output
+%h:  abbv hash of the commit
+%d:  any docorations on the commit (branch heads/tags)
+%ad: author date
+%s:  the comment
+%an: author name
+--graph: display commit tree in ASCII graph layout
+--date=short: truncated date format
+---------------------------------------------------------------------------
+.gitconfig
+-------------------------
+[alias] 
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+
+**** ALIASES are SHORTCUTS the user can utilize for easier interactions
+
+…this is NOT stored in .gitconfig ...GLOBAL config that is
+--- this will have to be done for each master/main that has been initialized, in that specific .git folder
+
+.profile    (only avialable if the shell supports it)
+	alias gs='git status '
+	alias ga='git add '
+	alias gb='git branch '
+	alias gc='git commit'
+	alias gd='git diff'
+	alias gco='git checkout '
+	alias gk='gitk --all&'
+	alias gx='gitx --all'
+
+	alias got='git '
+	alias get='git '
+
+$ git hist 		//shows hash value representations of each previous version/commit
+				//    see the alias reference above
+
+$ git checkout <hash>
+^^ reverts to that specific point in history
+To revert back to most up to date version:
+$ git checkout master
+
+$ git tag <version>
+ie git tag v1
+
+git checkout v1^  		//basically means "the first ancestor of v1"
+	*** if there are issues, try: git checkout v1~1
+
+git tag			// view all tags
+
+
+UNDO STAGED CHANGES (after using 'git add')
+	$ git reset HEAD <filename if desired>
+
+REMOVE COMMITS FROM BRANCH:
+	$ git reset --hard v1
+
+RESET RULES:::::
+	When given a commit reference (i.e. a hash, branch or tag name), the reset command will …
+	1.	Rewrite the current branch to point to the specified commit
+	2.	Optionally reset the staging area to match the specified commit
+	3.	Optionally reset the working directory to match the specified commit
+
+REVERT CHANGES 'AFTER' COMMIT:
+	$ git revert HEAD
+
+AMEND previous commit
+	$ git commit --amend -m "<new commit msg>"
+
+
+===== MERGING =====
+These commands merges the master INTO greet
+	$ git checkout greet
+	$ git merge master
+	$ git hist --all	// reference alias as before
+**** NOTE>>> You have to be in the branch you want to become the master branch
+
+
+------------- NOTE ----------
+	To fix conflicts in a file, you will have to MANUALLY update that file!
+
+git doesn’t provide any graphical merge tools, but it will gladly work with any third party merge tool you wish to use. 
+See http://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#External-Merge-and-Diff-Tools for a description of using the Perforce merge tool with git.
+
+
+
